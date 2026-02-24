@@ -1,0 +1,616 @@
+/* ============================================
+   MODAL COMPONENT - CAFE STYLE
+   Mobile-First Responsive Design
+   ============================================ */
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(62, 39, 35, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Container */
+.modal {
+  background: linear-gradient(135deg, #ffffff 0%, #fff8f0 100%);
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(62, 39, 35, 0.4);
+  animation: slideDown 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #d4a574;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal::before {
+  content: "☕";
+  position: absolute;
+  font-size: 150px;
+  opacity: 0.03;
+  right: -30px;
+  top: -30px;
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
+
+/* ============================================
+   MODAL HEADER
+   ============================================ */
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+  border-bottom: 3px solid #d4a574;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.modal-header::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4a574 50%,
+    transparent 100%
+  );
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f5e6d3;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.5px;
+}
+
+/* Modal Close Button */
+.modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  color: #f5e6d3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #d4a574;
+  transform: rotate(90deg);
+}
+
+.modal-close:active {
+  transform: rotate(90deg) scale(0.9);
+}
+
+/* ============================================
+   MODAL BODY
+   ============================================ */
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  color: #3e2723;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom Scrollbar for Modal Body */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: rgba(212, 165, 116, 0.1);
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4a574 0%, #b8935f 100%);
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e6b88a 0%, #d4a574 100%);
+}
+
+/* Modal Body Content Styles */
+.modal-body p {
+  margin: 0 0 15px 0;
+  line-height: 1.6;
+  color: #5d4037;
+  font-size: 15px;
+}
+
+.modal-body h4 {
+  margin: 0 0 12px 0;
+  color: #3e2723;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.modal-body ul,
+.modal-body ol {
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+.modal-body li {
+  margin-bottom: 8px;
+  color: #5d4037;
+  line-height: 1.6;
+}
+
+.modal-body strong {
+  color: #3e2723;
+  font-weight: 600;
+}
+
+.modal-body a {
+  color: #d4a574;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.modal-body a:hover {
+  color: #b8935f;
+  text-decoration: underline;
+}
+
+/* ============================================
+   MODAL FOOTER
+   ============================================ */
+
+.modal-footer {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(212, 165, 116, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+  background: rgba(212, 165, 116, 0.05);
+  flex-wrap: wrap;
+}
+
+.modal-footer button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Primary Button */
+.modal-footer .btn-primary,
+.modal-footer button[type="submit"] {
+  background: linear-gradient(135deg, #d4a574 0%, #c4956a 100%);
+  color: #3e2723;
+  box-shadow: 0 3px 10px rgba(212, 165, 116, 0.3);
+}
+
+.modal-footer .btn-primary:hover,
+.modal-footer button[type="submit"]:hover {
+  background: linear-gradient(135deg, #e6b88a 0%, #d4a574 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 165, 116, 0.4);
+}
+
+/* Secondary Button */
+.modal-footer .btn-secondary,
+.modal-footer button[type="button"] {
+  background: transparent;
+  color: #5d4037;
+  border: 2px solid #d4a574;
+}
+
+.modal-footer .btn-secondary:hover,
+.modal-footer button[type="button"]:hover {
+  background: rgba(212, 165, 116, 0.1);
+  border-color: #b8935f;
+}
+
+/* Danger/Cancel Button */
+.modal-footer .btn-danger {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+}
+
+.modal-footer .btn-danger:hover {
+  background: linear-gradient(135deg, #f05545 0%, #e74c3c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.modal-footer button:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile Devices (320px - 480px) */
+@media screen and (max-width: 480px) {
+  .modal-overlay {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .modal {
+    max-width: 100%;
+    border-radius: 12px;
+    max-height: 95vh;
+    margin-top: 10px;
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+  }
+
+  .modal-header h3 {
+    font-size: 17px;
+  }
+
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .modal-body {
+    padding: 18px;
+  }
+
+  .modal-body p {
+    font-size: 14px;
+  }
+
+  .modal-body h4 {
+    font-size: 16px;
+  }
+
+  .modal-footer {
+    padding: 16px 18px;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .modal-footer button {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 18px;
+    font-size: 14px;
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .modal-overlay {
+    padding: 15px;
+  }
+
+  .modal {
+    max-width: 600px;
+    border-radius: 14px;
+  }
+
+  .modal-header {
+    padding: 18px 22px;
+  }
+
+  .modal-header h3 {
+    font-size: 19px;
+  }
+
+  .modal-close {
+    width: 34px;
+    height: 34px;
+    font-size: 19px;
+  }
+
+  .modal-body {
+    padding: 22px;
+  }
+
+  .modal-body p {
+    font-size: 14.5px;
+  }
+
+  .modal-footer {
+    padding: 18px 22px;
+  }
+
+  .modal-footer button {
+    padding: 10px 18px;
+  }
+}
+
+/* Laptops (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .modal {
+    max-width: 550px;
+  }
+
+  .modal-header h3 {
+    font-size: 20px;
+  }
+
+  .modal-body p {
+    font-size: 15px;
+  }
+}
+
+/* Desktops (1025px+) */
+@media screen and (min-width: 1025px) {
+  .modal-overlay {
+    padding: 30px;
+  }
+
+  .modal {
+    max-width: 600px;
+    border-radius: 18px;
+  }
+
+  .modal-header {
+    padding: 22px 28px;
+  }
+
+  .modal-header h3 {
+    font-size: 22px;
+  }
+
+  .modal-close {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+
+  .modal-body {
+    padding: 28px;
+  }
+
+  .modal-body p {
+    font-size: 16px;
+  }
+
+  .modal-body h4 {
+    font-size: 18px;
+  }
+
+  .modal-footer {
+    padding: 22px 28px;
+    gap: 14px;
+  }
+
+  .modal-footer button {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Landscape Mode for Mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .modal {
+    max-height: 85vh;
+    margin-top: 10px;
+  }
+
+  .modal-header {
+    padding: 14px 16px;
+  }
+
+  .modal-header h3 {
+    font-size: 16px;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .modal-footer {
+    padding: 14px 16px;
+  }
+}
+
+/* ============================================
+   SPECIAL MODAL VARIANTS
+   ============================================ */
+
+/* Small Modal */
+.modal.modal-sm {
+  max-width: 400px;
+}
+
+/* Large Modal */
+.modal.modal-lg {
+  max-width: 800px;
+}
+
+/* Extra Large Modal */
+.modal.modal-xl {
+  max-width: 1000px;
+}
+
+/* Full Screen Modal (Mobile) */
+@media screen and (max-width: 480px) {
+  .modal.modal-fullscreen {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .modal-overlay.modal-fullscreen-overlay {
+    padding: 0;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .modal {
+    background: linear-gradient(135deg, #2c2416 0%, #3a2f20 100%);
+    border-color: #b8935f;
+  }
+
+  .modal::before {
+    opacity: 0.05;
+  }
+
+  .modal-body {
+    color: #f5e6d3;
+  }
+
+  .modal-body p,
+  .modal-body li {
+    color: #d7ccc8;
+  }
+
+  .modal-body h4,
+  .modal-body strong {
+    color: #f5e6d3;
+  }
+
+  .modal-body a {
+    color: #e6b88a;
+  }
+
+  .modal-body a:hover {
+    color: #d4a574;
+  }
+
+  .modal-footer {
+    background: rgba(62, 39, 35, 0.3);
+    border-color: rgba(212, 165, 116, 0.15);
+  }
+
+  .modal-footer .btn-secondary,
+  .modal-footer button[type="button"] {
+    color: #d7ccc8;
+    border-color: #b8935f;
+  }
+
+  .modal-footer .btn-secondary:hover,
+  .modal-footer button[type="button"]:hover {
+    background: rgba(212, 165, 116, 0.15);
+  }
+
+  .modal-body::-webkit-scrollbar-track {
+    background: rgba(62, 39, 35, 0.3);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal {
+    animation: none;
+  }
+
+  .modal-close,
+  .modal-footer button {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .modal {
+    border-width: 3px;
+  }
+
+  .modal-header {
+    background: #000;
+  }
+
+  .modal-header h3 {
+    color: #fff;
+  }
+
+  .modal-close {
+    border-width: 3px;
+  }
+
+  .modal-footer button {
+    border-width: 2px;
+  }
+}
+
+/* Focus Visible for Keyboard Navigation */
+.modal-close:focus-visible,
+.modal-footer button:focus-visible {
+  outline: 3px solid #d4a574;
+  outline-offset: 2px;
+}

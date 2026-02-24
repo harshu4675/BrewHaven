@@ -1,0 +1,978 @@
+/* ============================================
+   ORDER REVIEW PROMPT COMPONENT - CAFE STYLE
+   Mobile-First Responsive Design
+   ============================================ */
+
+/* Main Container */
+.order-review-prompt {
+  min-height: 300px;
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.review-prompt-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 15px;
+}
+
+.review-prompt-loading .spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(212, 165, 116, 0.2);
+  border-top-color: #d4a574;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.review-prompt-loading p {
+  margin: 0;
+  color: #5d4037;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ============================================
+   ERROR STATE
+   ============================================ */
+
+.review-prompt-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  gap: 15px;
+  text-align: center;
+}
+
+.review-prompt-error p {
+  margin: 0;
+  color: #e74c3c;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.review-prompt-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  gap: 12px;
+}
+
+.review-prompt-empty .success-icon {
+  font-size: 60px;
+  color: #4caf50;
+  margin-bottom: 10px;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.review-prompt-empty h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3e2723;
+  font-family: "Georgia", serif;
+}
+
+.review-prompt-empty p {
+  margin: 0;
+  font-size: 15px;
+  color: #5d4037;
+}
+
+/* ============================================
+   COMPLETE STATE
+   ============================================ */
+
+.review-prompt-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  gap: 12px;
+}
+
+.success-animation {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.success-animation .success-icon {
+  font-size: 40px;
+  color: #fff;
+}
+
+.review-prompt-complete h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #3e2723;
+  font-family: "Georgia", serif;
+}
+
+.review-prompt-complete p {
+  margin: 0;
+  font-size: 15px;
+  color: #5d4037;
+}
+
+.review-prompt-complete .sub-text {
+  font-size: 13px;
+  color: #8d6e63;
+  font-style: italic;
+}
+
+/* ============================================
+   PRODUCT REVIEW STEP
+   ============================================ */
+
+.review-prompt-product {
+  padding: 5px;
+}
+
+/* Review Header */
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.order-badge {
+  background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+  color: #f5e6d3;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.close-btn {
+  background: rgba(231, 76, 60, 0.1);
+  border: 2px solid rgba(231, 76, 60, 0.3);
+  color: #e74c3c;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+}
+
+.close-btn:hover {
+  background: #e74c3c;
+  color: #fff;
+  border-color: #e74c3c;
+  transform: rotate(90deg);
+}
+
+/* Progress Bar */
+.review-progress {
+  margin-bottom: 25px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(212, 165, 116, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d4a574 0%, #e6b88a 100%);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+}
+
+.review-progress span {
+  font-size: 12px;
+  color: #8d6e63;
+  font-weight: 500;
+}
+
+/* Review Product Display */
+.review-product {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 165, 116, 0.08) 0%,
+    transparent 100%
+  );
+  border-radius: 12px;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(62, 39, 35, 0.2);
+  border: 3px solid #d4a574;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.review-product:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.review-product h4 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #3e2723;
+  font-family: "Georgia", serif;
+}
+
+.product-qty {
+  margin: 0;
+  font-size: 13px;
+  color: #8d6e63;
+}
+
+/* ============================================
+   STAR RATING INPUT
+   ============================================ */
+
+.rating-section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.rating-section label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #3e2723;
+  margin-bottom: 15px;
+}
+
+.star-rating-input {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.star-rating-input.large .star-btn {
+  font-size: 36px;
+  width: 50px;
+  height: 50px;
+}
+
+.star-rating-input.medium .star-btn {
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+}
+
+.star-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #d7ccc8;
+  border-radius: 8px;
+}
+
+.star-btn:hover {
+  transform: scale(1.15);
+  color: #ffb74d;
+}
+
+.star-btn.filled {
+  color: #ffb74d;
+  animation: starPop 0.3s ease;
+}
+
+@keyframes starPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.star-btn.filled svg {
+  fill: #ffb74d;
+  filter: drop-shadow(0 2px 4px rgba(255, 183, 77, 0.4));
+}
+
+.rating-label {
+  font-size: 14px;
+  color: #d4a574;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   REVIEW FORM
+   ============================================ */
+
+.review-form-section {
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3e2723;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  border-radius: 10px;
+  font-size: 14px;
+  color: #3e2723;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #d4a574;
+  box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #bcaaa4;
+}
+
+/* ============================================
+   REVIEW ACTIONS
+   ============================================ */
+
+.review-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #d4a574 0%, #c4956a 100%);
+  color: #3e2723;
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e6b88a 0%, #d4a574 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 165, 116, 0.4);
+}
+
+.btn-primary:disabled {
+  background: #d7ccc8;
+  color: #8d6e63;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #5d4037;
+  border: 2px solid #d4a574;
+}
+
+.btn-outline:hover {
+  background: rgba(212, 165, 116, 0.1);
+  border-color: #b8935f;
+}
+
+.btn-text {
+  background: transparent;
+  color: #8d6e63;
+  border: none;
+  padding: 12px 15px;
+}
+
+.btn-text:hover {
+  color: #5d4037;
+  text-decoration: underline;
+}
+
+/* Skip Order */
+.skip-order {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.skip-order button {
+  background: none;
+  border: none;
+  color: #bcaaa4;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.skip-order button:hover {
+  color: #8d6e63;
+  text-decoration: underline;
+}
+
+/* ============================================
+   SERVICE RATING STEP
+   ============================================ */
+
+.review-prompt-service {
+  padding: 5px;
+}
+
+.review-prompt-service .review-header {
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+}
+
+.header-icon {
+  font-size: 45px;
+  color: #d4a574;
+  margin-bottom: 5px;
+}
+
+.review-prompt-service .review-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3e2723;
+  font-family: "Georgia", serif;
+}
+
+.review-prompt-service .review-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #5d4037;
+}
+
+/* Service Ratings */
+.service-ratings {
+  margin: 25px 0;
+}
+
+.service-rating-item {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(212, 165, 116, 0.05);
+  border-radius: 10px;
+}
+
+.service-rating-item label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3e2723;
+  margin-bottom: 10px;
+}
+
+.service-comment {
+  margin-top: 20px;
+}
+
+.service-comment label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3e2723;
+  margin-bottom: 8px;
+}
+
+.service-comment textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  border-radius: 10px;
+  font-size: 14px;
+  color: #3e2723;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  resize: vertical;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.service-comment textarea:focus {
+  outline: none;
+  border-color: #d4a574;
+  box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.15);
+}
+
+/* Review Summary */
+.review-summary {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 165, 116, 0.1) 0%,
+    transparent 100%
+  );
+  border-radius: 12px;
+  padding: 18px;
+  margin: 20px 0;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.review-summary h4 {
+  margin: 0 0 15px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #3e2723;
+}
+
+.reviewed-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviewed-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(62, 39, 35, 0.08);
+}
+
+.reviewed-item span {
+  font-size: 14px;
+  color: #3e2723;
+  font-weight: 500;
+}
+
+.stars-display {
+  display: flex;
+  gap: 3px;
+}
+
+.stars-display svg {
+  font-size: 14px;
+  color: #d7ccc8;
+}
+
+.stars-display svg.filled {
+  color: #ffb74d;
+  fill: #ffb74d;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile Devices (320px - 480px) */
+@media screen and (max-width: 480px) {
+  .order-review-prompt {
+    min-height: 250px;
+  }
+
+  .review-prompt-loading,
+  .review-prompt-empty,
+  .review-prompt-complete {
+    padding: 40px 15px;
+  }
+
+  .review-prompt-loading .spinner {
+    width: 40px;
+    height: 40px;
+  }
+
+  .review-prompt-empty .success-icon,
+  .success-animation .success-icon {
+    font-size: 35px;
+  }
+
+  .success-animation {
+    width: 65px;
+    height: 65px;
+  }
+
+  .review-prompt-empty h3,
+  .review-prompt-complete h3 {
+    font-size: 19px;
+  }
+
+  .review-header {
+    margin-bottom: 15px;
+  }
+
+  .order-badge {
+    padding: 5px 12px;
+    font-size: 11px;
+  }
+
+  .close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .progress-bar {
+    height: 5px;
+  }
+
+  .review-progress span {
+    font-size: 11px;
+  }
+
+  .review-product {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .product-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+  }
+
+  .review-product h4 {
+    font-size: 16px;
+  }
+
+  .rating-section label {
+    font-size: 14px;
+  }
+
+  .star-rating-input.large .star-btn {
+    font-size: 30px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .star-rating-input.medium .star-btn {
+    font-size: 24px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .rating-label {
+    font-size: 13px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .review-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 20px;
+    font-size: 13px;
+  }
+
+  .header-icon {
+    font-size: 38px;
+  }
+
+  .review-prompt-service .review-header h3 {
+    font-size: 19px;
+  }
+
+  .service-rating-item {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .service-rating-item label {
+    font-size: 13px;
+  }
+
+  .review-summary {
+    padding: 14px;
+  }
+
+  .review-summary h4 {
+    font-size: 14px;
+  }
+
+  .reviewed-item {
+    padding: 8px 10px;
+  }
+
+  .reviewed-item span {
+    font-size: 13px;
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .review-prompt-loading,
+  .review-prompt-empty,
+  .review-prompt-complete {
+    padding: 50px 20px;
+  }
+
+  .review-product {
+    padding: 18px;
+  }
+
+  .product-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .star-rating-input.large .star-btn {
+    font-size: 34px;
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* Laptops (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .product-image {
+    width: 95px;
+    height: 95px;
+  }
+}
+
+/* Desktops (1025px+) */
+@media screen and (min-width: 1025px) {
+  .review-prompt-loading,
+  .review-prompt-empty,
+  .review-prompt-complete {
+    padding: 70px 30px;
+  }
+
+  .success-animation {
+    width: 90px;
+    height: 90px;
+  }
+
+  .success-animation .success-icon {
+    font-size: 45px;
+  }
+
+  .review-prompt-empty h3,
+  .review-prompt-complete h3 {
+    font-size: 26px;
+  }
+
+  .product-image {
+    width: 110px;
+    height: 110px;
+  }
+
+  .review-product h4 {
+    font-size: 20px;
+  }
+
+  .star-rating-input.large .star-btn {
+    font-size: 40px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  .header-icon {
+    font-size: 50px;
+  }
+
+  .review-prompt-service .review-header h3 {
+    font-size: 24px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .review-prompt-loading p,
+  .review-prompt-error p,
+  .review-prompt-empty p,
+  .review-prompt-complete p,
+  .review-product h4,
+  .rating-section label,
+  .form-group label,
+  .service-rating-item label,
+  .service-comment label,
+  .review-summary h4,
+  .reviewed-item span {
+    color: #f5e6d3;
+  }
+
+  .review-prompt-empty h3,
+  .review-prompt-complete h3,
+  .review-prompt-service .review-header h3 {
+    color: #f5e6d3;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .service-comment textarea {
+    background: #3a2f20;
+    color: #f5e6d3;
+    border-color: rgba(212, 165, 116, 0.3);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder,
+  .service-comment textarea::placeholder {
+    color: #8d6e63;
+  }
+
+  .review-product {
+    background: rgba(212, 165, 116, 0.12);
+  }
+
+  .service-rating-item {
+    background: rgba(212, 165, 116, 0.1);
+  }
+
+  .reviewed-item {
+    background: #3a2f20;
+  }
+
+  .order-badge {
+    background: linear-gradient(135deg, #1a1310 0%, #2a1f1a 100%);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .star-btn,
+  .success-animation,
+  .review-prompt-empty .success-icon,
+  .progress-fill,
+  .review-form-section {
+    animation: none;
+  }
+
+  .star-btn:hover {
+    transform: none;
+  }
+}

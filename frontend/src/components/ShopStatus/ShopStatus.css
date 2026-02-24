@@ -1,0 +1,381 @@
+/* ============================================
+   SHOP STATUS TICKER COMPONENT - CAFE STYLE
+   Mobile-First Responsive Design
+   ============================================ */
+
+/* Shop Status Ticker */
+.shop-status-ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  border-bottom: 2px solid #d4a574;
+  box-shadow: 0 2px 15px rgba(62, 39, 35, 0.3);
+}
+
+/* Status Type Variants */
+.shop-status-ticker.open {
+  background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+  border-bottom-color: #81c784;
+}
+
+.shop-status-ticker.closed {
+  background: linear-gradient(135deg, #c62828 0%, #e53935 100%);
+  border-bottom-color: #ef9a9a;
+}
+
+.shop-status-ticker.pickup {
+  background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+  border-bottom-color: #ffb74d;
+}
+
+/* ============================================
+   TICKER ANIMATION
+   ============================================ */
+
+.ticker-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  margin: 0 50px 0 0;
+}
+
+.ticker-content {
+  display: flex;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-wrapper:hover .ticker-content {
+  animation-play-state: paused;
+}
+
+/* Ticker Item */
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 30px;
+  white-space: nowrap;
+}
+
+/* Status Dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  animation: blink 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.shop-status-ticker.closed .status-dot {
+  background: #ffcdd2;
+}
+
+.shop-status-ticker.pickup .status-dot {
+  background: #ffe0b2;
+}
+
+/* Status Icon */
+.status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  flex-shrink: 0;
+}
+
+/* Status Text */
+.status-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ticker Separator */
+.ticker-separator {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  margin-left: 15px;
+}
+
+/* ============================================
+   DISMISS BUTTON
+   ============================================ */
+
+.ticker-dismiss {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.ticker-dismiss:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.ticker-dismiss:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile Devices (320px - 480px) */
+@media screen and (max-width: 480px) {
+  .shop-status-ticker {
+    height: 34px;
+  }
+
+  .ticker-item {
+    gap: 8px;
+    padding: 0 20px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .status-icon {
+    font-size: 14px;
+  }
+
+  .status-text {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+
+  .ticker-separator {
+    font-size: 8px;
+    margin-left: 10px;
+  }
+
+  .ticker-dismiss {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    right: 8px;
+  }
+
+  .ticker-content {
+    animation-duration: 25s;
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .shop-status-ticker {
+    height: 36px;
+  }
+
+  .ticker-item {
+    gap: 9px;
+    padding: 0 25px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .status-icon {
+    font-size: 15px;
+  }
+
+  .status-text {
+    font-size: 12px;
+  }
+
+  .ticker-dismiss {
+    width: 25px;
+    height: 25px;
+    font-size: 13px;
+  }
+}
+
+/* Laptops (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .ticker-content {
+    animation-duration: 35s;
+  }
+}
+
+/* Desktops (1025px+) */
+@media screen and (min-width: 1025px) {
+  .shop-status-ticker {
+    height: 42px;
+  }
+
+  .ticker-item {
+    gap: 12px;
+    padding: 0 40px;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .status-icon {
+    font-size: 18px;
+  }
+
+  .status-text {
+    font-size: 14px;
+    letter-spacing: 0.6px;
+  }
+
+  .ticker-separator {
+    font-size: 12px;
+    margin-left: 20px;
+  }
+
+  .ticker-dismiss {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+    right: 15px;
+  }
+
+  .ticker-content {
+    animation-duration: 40s;
+  }
+}
+
+/* Landscape Mode for Mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .shop-status-ticker {
+    height: 32px;
+  }
+
+  .status-text {
+    font-size: 11px;
+  }
+
+  .ticker-content {
+    animation-duration: 20s;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .shop-status-ticker {
+    background: linear-gradient(135deg, #1a1310 0%, #2a1f1a 100%);
+    border-bottom-color: #b8935f;
+  }
+
+  .shop-status-ticker.open {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  }
+
+  .shop-status-ticker.closed {
+    background: linear-gradient(135deg, #b71c1c 0%, #c62828 100%);
+  }
+
+  .shop-status-ticker.pickup {
+    background: linear-gradient(135deg, #e65100 0%, #f57c00 100%);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-content {
+    animation: none;
+    justify-content: center;
+  }
+
+  .ticker-item {
+    padding: 0 15px;
+  }
+
+  /* Hide duplicate items when animation is disabled */
+  .ticker-item:nth-child(n + 2) {
+    display: none;
+  }
+
+  .status-dot {
+    animation: none;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+
+  .ticker-dismiss,
+  .ticker-dismiss:hover {
+    transition: none;
+    transform: translateY(-50%);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .shop-status-ticker {
+    border-bottom-width: 3px;
+  }
+
+  .status-text {
+    font-weight: 700;
+  }
+
+  .ticker-dismiss {
+    border-width: 2px;
+  }
+}
+
+/* Focus Visible */
+.ticker-dismiss:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}

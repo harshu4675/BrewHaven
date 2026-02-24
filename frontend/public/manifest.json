@@ -1,0 +1,37 @@
+{
+  "name": "Brew Haven - Cafe",
+  "short_name": "BrewHaven",
+  "description": "Order delicious food online",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d4145a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "shopping"],
+  "shortcuts": [
+    {
+      "name": "Browse Menu",
+      "url": "/menu",
+      "description": "View our food menu"
+    },
+    {
+      "name": "My Cart",
+      "url": "/cart",
+      "description": "View your cart"
+    }
+  ]
+}
