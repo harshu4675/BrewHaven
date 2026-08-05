@@ -43,9 +43,10 @@ const ShopStatus = () => {
         icon: <FiAlertCircle />,
         text:
           shopStatus.closedMessage ||
-          `We're Currently Closed • Open ${formatTime(shopStatus.openTime)} - ${formatTime(shopStatus.closeTime)}`,
+          `SHOP IS CLOSED • Opens at ${formatTime(shopStatus.openTime)} • Please come back later`,
       };
     }
+
     if (shopStatus.orderType === "pickup") {
       return {
         type: "pickup",
@@ -53,10 +54,11 @@ const ShopStatus = () => {
         text: `Counter Pickup Only • ${shopStatus.pickupMessage || "Orders available for pickup at counter"}`,
       };
     }
+
     return {
       type: "open",
       icon: <FiClock />,
-      text: `We're Open! • Serving until ${formatTime(shopStatus.closeTime)} • Order Now & Enjoy Fresh Coffee ☕`,
+      text: `We're Open! • Serving until ${formatTime(shopStatus.closeTime)} • Order Now ☕`,
     };
   };
 

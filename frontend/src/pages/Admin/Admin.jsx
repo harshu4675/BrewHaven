@@ -526,7 +526,7 @@ const Admin = () => {
         {/* ✅ ADD VIEW STORE BUTTON */}
         <button
           className="view-store-btn"
-          onClick={() => window.open("/", "_blank")}
+          onClick={() => window.open("/")}
           type="button"
           aria-label="View Store"
           title="View Store"
@@ -1334,71 +1334,125 @@ const Admin = () => {
                   <div className="admin-panel">
                     <div className="panel-body">
                       {contacts.length > 0 ? (
-                        <div className="table-wrapper">
-                          <table className="admin-table">
-                            <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Subject</th>
-                                <th>Message</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {contacts.map((contact) => (
-                                <tr key={contact._id}>
-                                  <td>{contact.name}</td>
-                                  <td>{contact.email}</td>
-                                  <td>
-                                    {contact.subject ||
-                                      contact.eventType ||
-                                      "-"}
-                                  </td>
-                                  <td>
-                                    {(contact.message || "").substring(0, 50)}
-                                    ...
-                                  </td>
-                                  <td>{formatDate(contact.createdAt)}</td>
-                                  <td>
-                                    <span
-                                      className={`badge ${
-                                        contact.isRead
-                                          ? "badge-success"
-                                          : "badge-warning"
-                                      }`}
-                                    >
-                                      {contact.isRead ? "Read" : "Unread"}
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="action-btns">
-                                      {!contact.isRead && (
-                                        <button
-                                          className="action-btn edit"
-                                          onClick={() =>
-                                            markMessageAsRead(contact._id)
-                                          }
-                                        >
-                                          See
-                                        </button>
-                                      )}
-                                      <button
-                                        className="action-btn delete"
-                                        onClick={() =>
-                                          deleteMessage(contact._id)
-                                        }
-                                      >
-                                        Del
-                                      </button>
-                                    </div>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                        <div className="messages-container">
+                          {contacts.map((contact) => (
+                            <div key={contact._id} className="message-card">
+                              <div className="message-header">
+                                <h3>{contact.name || "-"}</h3>
+                                <span
+                                  className={`badge ${
+                                    contact.isRead
+                                      ? "badge-success"
+                                      : "badge-warning"
+                                  }`}
+                                >
+                                  {contact.isRead ? "Read" : "Unread"}
+                                </span>
+                              </div>
+
+                              <div className="message-body">
+                                <p>
+                                  <strong>Email:</strong>{" "}
+                                  <span>{contact.email || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Phone:</strong>{" "}
+                                  <span>{contact.phone || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Event Type:</strong>{" "}
+                                  <span>{contact.eventType || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Event Date:</strong>{" "}
+                                  <span>
+                                    {contact.eventDate
+                                      ? formatDate(contact.eventDate)
+                                      : "-"}
+                                  </span>
+                                </p>
+
+                                <p>
+                                  <strong>Event Time:</strong>{" "}
+                                  <span>{contact.eventTime || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Guest Count:</strong>{" "}
+                                  <span>{contact.guestCount || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Venue:</strong>{" "}
+                                  <span>{contact.venue || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Venue Address:</strong>{" "}
+                                  <span>{contact.venueAddress || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Preferred Items:</strong>{" "}
+                                  <span>
+                                    {contact.preferredItems?.length > 0
+                                      ? contact.preferredItems.join(", ")
+                                      : "-"}
+                                  </span>
+                                </p>
+
+                                <p>
+                                  <strong>Budget:</strong>{" "}
+                                  <span>{contact.budget || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Special Requirements:</strong>{" "}
+                                  <span>
+                                    {contact.specialRequirements || "-"}
+                                  </span>
+                                </p>
+
+                                <p>
+                                  <strong>Message:</strong>{" "}
+                                  <span>{contact.message || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Status:</strong>{" "}
+                                  <span>{contact.status || "-"}</span>
+                                </p>
+
+                                <p>
+                                  <strong>Created:</strong>{" "}
+                                  <span>{formatDate(contact.createdAt)}</span>
+                                </p>
+                              </div>
+
+                              <div className="message-actions">
+                                {!contact.isRead && (
+                                  <button
+                                    className="action-btn edit"
+                                    onClick={() =>
+                                      markMessageAsRead(contact._id)
+                                    }
+                                  >
+                                    Mark Read
+                                  </button>
+                                )}
+
+                                <button
+                                  className="action-btn delete"
+                                  onClick={() => deleteMessage(contact._id)}
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       ) : (
                         <div className="empty-state">

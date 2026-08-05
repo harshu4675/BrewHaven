@@ -379,3 +379,64 @@
   outline: 3px solid #ffffff;
   outline-offset: 2px;
 }
+/* =========================================
+   SHOP STATUS LEFT → RIGHT ANIMATION
+========================================= */
+
+.shop-status-ticker {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Wrapper */
+.ticker-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Moving content */
+.ticker-content {
+  display: inline-flex;
+  align-items: center;
+  animation: scrollLeft 20s linear infinite;
+}
+
+/* Each repeated item */
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 60px;
+}
+
+/* Animation LEFT → RIGHT */
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.ticker-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticker-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: scrollLeft 18s linear infinite;
+}
+
+/* Seamless continuous animation */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

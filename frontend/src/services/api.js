@@ -16,12 +16,11 @@ const getBaseURL = () => {
 
   // Fallback based on environment
   if (process.env.NODE_ENV === "production") {
-    // ⚠️ REPLACE with your actual Render backend URL
-    return "https://your-backend-name.onrender.com";
+    return "https://yourbrewhaven.onrender.com";
   }
 
   // Development fallback
-  return "http://localhost:5000";
+  return "https://yourbrewhaven.onrender.com";
 };
 
 const API_URL = getBaseURL();

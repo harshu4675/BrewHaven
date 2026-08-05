@@ -71,8 +71,7 @@ registerRoute(
 // Only cache GET requests, use Network First for fresh data
 registerRoute(
   ({ url, request }) =>
-    // Match your Render backend domain OR any /api/ path
-    (url.origin === "https://brewhaven-009i.onrender.com" ||
+    (url.origin === "https://yourbrewhaven.onrender.com" ||
       "http://localhost:3000" ||
       url.pathname.startsWith("/api/")) &&
     request.method === "GET",

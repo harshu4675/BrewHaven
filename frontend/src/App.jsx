@@ -146,37 +146,11 @@ function App() {
 }
 
 const NotFound = () => (
-  <div
-    style={{
-      minHeight: "70vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      padding: "40px 20px",
-    }}
-  >
-    <h1 style={{ fontSize: "5rem", margin: "0", color: "#d4145a" }}>404</h1>
-    <h2 style={{ fontSize: "1.5rem", margin: "10px 0", color: "#1a1a2e" }}>
-      Page Not Found
-    </h2>
-    <p style={{ color: "#888", marginBottom: "30px" }}>
-      The page you're looking for doesn't exist.
-    </p>
-    <a
-      href="/"
-      style={{
-        padding: "12px 30px",
-        background: "linear-gradient(135deg, #d4145a, #fbb03b)",
-        color: "#fff",
-        textDecoration: "none",
-        borderRadius: "50px",
-        fontWeight: "600",
-      }}
-    >
-      Go Home
-    </a>
+  <div className="not-found">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you're looking for doesn't exist.</p>
+    <a href="/">Go Home</a>
   </div>
 );
 
